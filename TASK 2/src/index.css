@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 25% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    --primary: 220 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 350 65% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 45 90% 55%;
+    --accent-foreground: 220 25% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 220 70% 50%;
+
+    --radius: 1rem;
+
+    /* Game-specific tokens */
+    --cell-bg: 220 15% 95%;
+    --cell-hover: 220 20% 90%;
+    --cell-border: 220 15% 82%;
+    --x-color: 220 70% 50%;
+    --o-color: 350 65% 55%;
+    --win-glow: 145 60% 45%;
+    --draw-color: 45 90% 55%;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+
+    --shadow-cell: 0 2px 8px hsl(220 25% 10% / 0.06);
+    --shadow-cell-hover: 0 4px 16px hsl(220 25% 10% / 0.12);
+    --shadow-board: 0 8px 32px hsl(220 25% 10% / 0.08);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+@keyframes cell-pop {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse-win {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--win-glow) / 0.4); }
+  50% { box-shadow: 0 0 20px 4px hsl(var(--win-glow) / 0.3); }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-cell-pop {
+  animation: cell-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-pulse-win {
+  animation: pulse-win 1.2s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out forwards;
+}
